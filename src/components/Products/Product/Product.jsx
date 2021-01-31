@@ -6,9 +6,10 @@ import { AddShoppingCart } from '@material-ui/core';
 
 const Product = () => {
     return (
-        <div>
-            
-        </div>
+        <Card className={classes.root}>
+        <CardMedia className={classes.media} image='' title={product.name} />
+
+        </Card>
     );
 };
 
