@@ -1,12 +1,11 @@
 import './App.css';
-
+import {Products} from './components/Products/products'
 import React from 'react';
 
 const App = () => {
   return (
     <div>
-      sello
-
+      <Products />
     </div>
   );
 };
