@@ -6,13 +6,15 @@ const products = [
     {
         id: 1,
         name : "Shoes",
-        desc : "running shoes"
+        desc : "running shoes",
+        price: 15
     },
 
     {
         id: 1,
         name : "Macbook Pro",
-        desc : "a computer for all needs"
+        desc : "a computer for all needs",
+        price: 2000
     }
 ]
 
@@ -22,7 +24,7 @@ const Products = () => {
         <Grid container justify="center" spacing={4}>
             {products.map((items) => (
                 <Grid item key={items.id} xs={12} sm={6} md={4} lg={3}>
-                   <Product /> 
+                   <Product product={items} /> 
                   </Grid>  
             ))}
         </Grid>    
