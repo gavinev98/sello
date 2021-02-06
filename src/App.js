@@ -22,18 +22,20 @@ const App = () => {
   //fetching the current cart session if there is one avaliable.
   const fetchCart = async () => {
     //storing the response in a variable.
-    const response = await commerce.cart.retrieve();
+    const cart = await commerce.cart.retrieve();
 
     //setting the carts state if there is any.
-    setCart(response);
-
+    setCart(cart);
 
   }
 
   //similar to onload function runs at the start.
   useEffect(() => {
     fetchProducts();
+    fetchCart();
   }, [])
+
+  console.log(cart);
 
   console.log(products);
 
