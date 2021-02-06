@@ -46,12 +46,10 @@ const App = () => {
 
   console.log(cart);
 
-  console.log(products);
-
   return (
     <div> 
-      <Navbar />
-      <Products products={products} />
+      <Navbar totalItems={cart.total_items} />
+      <Products products={products} onAddToCart={handleAddToCart} />
     </div>
   );
 };
