@@ -29,6 +29,15 @@ const App = () => {
 
   }
 
+  //handle add to cart operation
+  const handleAddToCart = async (productId, quantity) => {
+
+    const item = await commerce.cart.add(productId, quantity);
+
+    setCart(item.cart);
+
+  }
+
   //similar to onload function runs at the start.
   useEffect(() => {
     fetchProducts();
