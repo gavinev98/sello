@@ -15,6 +15,13 @@ const App = () => {
     setProducts(data);
   }
 
+  //similar to onload function runs at the start.
+  useEffect(() => {
+    fetchProducts();
+  }, [])
+
+  console.log(products);
+
 
   return (
     <div> 
