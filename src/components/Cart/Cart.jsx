@@ -36,6 +36,8 @@ const Cart = ({ cart }) => {
          </>
     )
 
+    if(!cart.line_items) return 'Loading...';
+
     return (
             <Container>
                 <div className={classes.toolbar} />
