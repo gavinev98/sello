@@ -26,7 +26,7 @@ const App = () => {
 
     //setting the carts state if there is any.
     setCart(cart);
-
+   
   }
 
   //handle add to cart operation

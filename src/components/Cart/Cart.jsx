@@ -6,9 +6,6 @@ import useStyles from './styles';
 const Cart = ({ cart }) => {
     //import styles
     const classes = useStyles();
-      
-    //check if shopping cart is empty.
-    const isEmpty = !cart.line_items.length;
 
 
     
@@ -18,24 +15,33 @@ const Cart = ({ cart }) => {
     }
 
     //a component to display is the cart is filled.
-    const FilledCart = () => {
+    const FilledCart = () => (
         	<>
             <Grid container spacing={3}>
-            {cart.line_items.map(lineItem => (
+            {cart.line_items.map((lineItem) => (
             <Grid item xs={12} sm={4} key={lineItem.id}>
-            <CartItem />
+            <div>{lineItem.name}</div>
             </Grid>
             ))}
             </Grid>
+            <div className={classes.cardDetails}>
+                <Typography variant="h4">
+                    Subtotal: {cart.subtotal.formatted_with_symbol}
+                </Typography>
+                <div>
+                    <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary">Empty Cart</Button>
+                    <Button className={classes.checkoutButton} size="large" type="button" variant="contained" color="primary">Checkout</Button>
+                </div>
+            </div>
          </>
-    }
+    )
 
     return (
             <Container>
                 <div className={classes.toolbar} />
 
                 <Typography className={classes.title} variant="h3" >Your Shopping Cart!</Typography>
-                {isEmpty ? <EmptyCart /> : <FilledCart />}
+                { !cart.line_items > 0 ? EmptyCart() : FilledCart() }
             </Container>
     );
 };
