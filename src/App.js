@@ -33,20 +33,40 @@ const App = () => {
   //handle add to cart operation
   const handleAddToCart = async (productId, quantity) => {
 
-    const item = await commerce.cart.add(productId, quantity);
+    const { cart } = await commerce.cart.add(productId, quantity);
 
-    setCart(item.cart);
+    setCart(cart);
 
   }
 
   //handle update quanity of product operation.
   const handleUpdateCartQty = async (productId, quantity) => {
 
-    const updatedItem = await commerce.cart.update(productId, {quantity});
+    const { cart } = await commerce.cart.update(productId, {quantity});
 
-    setCart(updatedItem.cart);
+    setCart(cart);
 
   }
+
+  //handle removing quantity/product.
+  const handleRemoveFromCart = async(productId) => {
+
+    const { cart } = await commerce.cart.remove(productId);
+
+    setCart(cart);
+ }
+
+
+ //handle emptying of cart operation.
+ const handleEmptycart = async () => {
+
+    const { cart } = await commerce.cart.empty();
+
+    setCart(cart);
+
+ }
+
+  //handle remove
 
   //similar to onload function runs at the start.
   useEffect(() => {
