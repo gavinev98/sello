@@ -4,7 +4,7 @@ import { ShoppingCart } from '@material-ui/icons';
 import { FiberPin } from '@material-ui/icons';
 import logo from '../../assets/commerce.png';
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import useStyles from './styles';
 
@@ -13,6 +13,9 @@ const Navbar = ({ totalItems }) => {
     //importing stylings
     const classes = useStyles();
 
+    //finding the current location
+    const location = useLocation();
+ 
 
     return (
         <div>
@@ -24,6 +27,7 @@ const Navbar = ({ totalItems }) => {
                         sello
                     </Typography>
                     <div className={classes.grow} />
+                    {location.pathname == '/' && (
                     <div className={classes.button}>
                         <Link to="/cart"   />
                         <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
@@ -31,7 +35,7 @@ const Navbar = ({ totalItems }) => {
                                 <ShoppingCart />
                             </Badge>
                         </IconButton>
-                    </div>
+                    </div> )}
                 </Toolbar>
             </AppBar>
         </div>
