@@ -39,6 +39,15 @@ const App = () => {
 
   }
 
+  //handle update quanity of product operation.
+  const handleUpdateCartQty = async (productId, quantity) => {
+
+    const updatedItem = await commerce.cart.update(productId, {quantity});
+
+    setCart(updatedItem.cart);
+
+  }
+
   //similar to onload function runs at the start.
   useEffect(() => {
     fetchProducts();
