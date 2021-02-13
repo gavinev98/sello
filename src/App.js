@@ -91,6 +91,9 @@ const App = () => {
                 handleEmptycart={handleEmptycart}
           />
         </Route>
+        <Route exact path="/checkout">
+         <Checkout />
+        </Route>
       </Switch>
     </div>
     </Router>
