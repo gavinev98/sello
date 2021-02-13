@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button} from '@material-ui/core';
 import useStyles from './styles.js';
+import AddressForm from '../AddressForm';
+import PaymentForm from '../PaymentForm';
 
 const steps = ['Shipping Address', 'Payment Details'];
 
@@ -16,6 +18,13 @@ const Checkout = () => {
         : <PaymentForm />
 
     
+    //confirmation function.
+    const Confirmation = () => (
+        <div>
+            Confirmation
+        </div>
+
+    );
 
     return (
         <>
