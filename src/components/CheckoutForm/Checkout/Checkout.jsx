@@ -1,10 +1,14 @@
 import React from 'react';
 import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button} from '@material-ui/core';
-import classes from '*.module.css';
+import useStyles from './styles.js';
 
 const steps = ['Shipping Address', 'Payment Details'];
 
 const Checkout = () => {
+
+    const classes = useStyles();
+
+
     return (
         <>
           <div className={classes.toolbar}  />
