@@ -13,7 +13,7 @@ const Checkout = () => {
 
     const classes = useStyles();
 
-    const form  = () => activeStep == 0 
+    const Form  = () => activeStep == 0 
         ? <AddressForm />
         : <PaymentForm />
 
