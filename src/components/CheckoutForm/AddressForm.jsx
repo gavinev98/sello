@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { InputLabel, Select, MenuItem, Button, Grid, Typography} from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
 import { commerce } from '../../lib/commerce';
 import FormInput from './FormInput';
 
 
-const AddressForm = () => {
+const AddressForm = ( { token }) => {
     //states for settting the shipping country.
     const [shippingCountries, setShippingCountries] = useState([]);
     const [shippingCountry, setShippingCountry] = useState('');
@@ -27,7 +27,13 @@ const AddressForm = () => {
        const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
         //updating the state of the shipping countries.
        setShippingCountries(countries);
+      
     }
+
+    useEffect(() => {
+        //fetch shipping countries onload and pass generated id.
+        fetchShippingCountries(token.id);
+    }, []);
 
 
     return (
