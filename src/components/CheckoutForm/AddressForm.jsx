@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { InputLabel, Select, MenuItem, Button, Grid, Typography} from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
-
+import { commerce } from '../../lib/commerce';
 import FormInput from './FormInput';
 
 
@@ -17,9 +17,17 @@ const AddressForm = () => {
     //states for setting the shipping options.
     const [ shippingOptions, setShippingOptions] = useState([]);
     const [ shippingOption, setShippingOption] = useState('');
-    
+
     //importing methods from useForm()
     const methods = useForm();
+
+    //fetching the shipping countries via checkoutTokenId. Acts like a recipt.
+    const fetchShippingCountries = async (checkoutTokenId) => {
+
+       const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
+        //updating the state of the shipping countries.
+       setShippingCountries(countries);
+    }
 
 
     return (
