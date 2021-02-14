@@ -11,12 +11,16 @@ const Checkout = ({ cart }) => {
     //setting and retrieving the active step.
     const [activeStep, setActiveStep] = useState(0);
 
+    //setting the checkoutToken state.
+    const [checkoutToken, setCheckoutToken] = useState(null);
+
     const classes = useStyles();
 
     useEffect(() => {
         const generateToken = async () => {
             try{
                 const token = commerce.checkout.generateToken(cart.id, { type: 'cart'});
+                setCheckoutToken(token);
             } catch (error) {
 
             }
