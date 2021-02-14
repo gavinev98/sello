@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { InputLabel, Select, MenuItem, Button, Grid, Typography} from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
 
@@ -6,7 +6,18 @@ import FormInput from './FormInput';
 
 
 const AddressForm = () => {
+    //states for settting the shipping country.
+    const [shippingCountries, setShippingCountries] = useState([]);
+    const [shippingCountry, setShippingCountry] = useState('');
 
+    //states for setting the shipping sub divisions.
+    const [shippingSubDivisions, setShippingSubDivisions] = useState([]);
+    const [shippingSubDivision, setShippingSubDivision] = useState('');
+
+    //states for setting the shipping options.
+    const [ shippingOptions, setShippingOptions] = useState([]);
+    const [ shippingOption, setShippingOption] = useState('');
+    
     //importing methods from useForm()
     const methods = useForm();
 
@@ -23,7 +34,30 @@ const AddressForm = () => {
                     <FormInput required name='email' label='Email' />
                     <FormInput required name='city' label='City' />
                     <FormInput required name='eircode' label='Eircode' />
-
+                    <Grid item xs={12} sm={6}>
+                        <InputLabel>Shipping Country</InputLabel>
+                        <Select value={} fullWidth onChange={}>
+                        <MenuItem key={} value={}>
+                            Select Me
+                        </MenuItem>
+                        </Select>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <InputLabel>Shipping Subdivision</InputLabel>
+                        <Select value={} fullWidth onChange={}>
+                        <MenuItem key={} value={}>
+                            Select Me
+                        </MenuItem>
+                        </Select>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <InputLabel>Shipping Options</InputLabel>
+                        <Select value={} fullWidth onChange={}>
+                        <MenuItem key={} value={}>
+                            Select Me
+                        </MenuItem>
+                        </Select>
+                    </Grid>
                 </Grid>
                 </form>
             </FormProvider>
