@@ -39,11 +39,10 @@ const Checkout = () => {
                 </Step>
             ))}
             </Stepper>
-
-
-        </Paper>
-            </main>
             {activeStep === steps.length ? <Confirmation /> : <Form />}
+        </Paper>
+       
+            </main>
         </>
     );
 };
