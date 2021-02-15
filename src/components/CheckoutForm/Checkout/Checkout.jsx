@@ -19,14 +19,16 @@ const Checkout = ({ cart }) => {
     useEffect(() => {
         const generateToken = async () => {
             try{
-                const token = commerce.checkout.generateToken(cart.id, { type: 'cart'});
+                const token = await commerce.checkout.generateToken(cart.id, { type: 'cart'});
                 setCheckoutToken(token);
             } catch (error) {
-
+                console.log("There was an error generating the token!!", error);
             }
         }
         generateToken();
     }, [cart]);
+
+   
 
     const Form  = () => activeStep == 0 
         ? <AddressForm token={checkoutToken} />
