@@ -39,6 +39,16 @@ const AddressForm = ( { token }) => {
       
     }
 
+    //fething the shipping subdivisions for each country.
+    const fetchSubdivisions = async  (countryCode) => {
+
+        const { subdivisions } = await commerce.services.localeListSubdivisions(countryCode);
+
+        //setting the shipping subdivisions based off of country selected.
+        setShippingSubDivision(subdivisions);
+
+    }
+
     useEffect(() => {
         //fetch shipping countries onload and pass generated id.
         fetchShippingCountries(token.id);
