@@ -27,6 +27,9 @@ const AddressForm = ( { token }) => {
        const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
         //updating the state of the shipping countries.
        setShippingCountries(countries);
+       //changing the countries to string so we can loop over array.
+       //this will bring back the keys eg ['AL', 'VE', 'IE', 'SK'] etc.
+       setShippingCountry(Object.keys(countries)[0]);
       
     }
 
@@ -50,13 +53,13 @@ const AddressForm = ( { token }) => {
                     <FormInput required name='eircode' label='Eircode' />
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Shipping Country</InputLabel>
-                        <Select value={} fullWidth onChange={}>
+                        <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCountry(e.target.value)}>
                         <MenuItem key={} value={}>
                             Select Me
                         </MenuItem>
                         </Select>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                  {/*  <Grid item xs={12} sm={6}>
                         <InputLabel>Shipping Subdivision</InputLabel>
                         <Select value={} fullWidth onChange={}>
                         <MenuItem key={} value={}>
@@ -71,7 +74,7 @@ const AddressForm = ( { token }) => {
                             Select Me
                         </MenuItem>
                         </Select>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
                 </form>
             </FormProvider>
