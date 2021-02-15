@@ -45,14 +45,24 @@ const AddressForm = ( { token }) => {
         const { subdivisions } = await commerce.services.localeListSubdivisions(countryCode);
 
         //setting the shipping subdivisions based off of country selected.
-        setShippingSubDivision(subdivisions);
-
+        setShippingSubDivisions(subdivisions);
+        //setting a singular sub divsion
+        setShippingSubDivision(Object.keys(subdivisions)[0]);
+        
     }
 
     useEffect(() => {
         //fetch shipping countries onload and pass generated id.
         fetchShippingCountries(token.id);
     }, []);
+
+    //this useEffect will run whenever the state of the shipping country chages
+    // Once it does change we can then fetch the subdivsisions for that particular country.
+    useEffect(() => {
+        //fetching the subdivisions for the country at hand.
+        if(shippingCountry) fetchSubdivisions(shippingCountry);
+
+    }, [shippingCountry]);
 
 
     return (
@@ -77,7 +87,7 @@ const AddressForm = ( { token }) => {
                         ))}
                         </Select>
                     </Grid>
-                  {/*  <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={6}>
                         <InputLabel>Shipping Subdivision</InputLabel>
                         <Select value={} fullWidth onChange={}>
                         <MenuItem key={} value={}>
@@ -85,7 +95,7 @@ const AddressForm = ( { token }) => {
                         </MenuItem>
                         </Select>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                  {/*  <Grid item xs={12} sm={6}>
                         <InputLabel>Shipping Options</InputLabel>
                         <Select value={} fullWidth onChange={}>
                         <MenuItem key={} value={}>
