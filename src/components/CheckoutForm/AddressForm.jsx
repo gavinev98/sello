@@ -21,6 +21,11 @@ const AddressForm = ( { token }) => {
     //importing methods from useForm()
     const methods = useForm();
 
+    //looping over the countries object to create and array of arrays.
+    const countries = Object.entries(shippingCountries).map(([code, name]) => ({id : code, label: name}));
+
+
+    
     //fetching the shipping countries via checkoutTokenId. Acts like a recipt.
     const fetchShippingCountries = async (checkoutTokenId) => {
 
@@ -54,6 +59,7 @@ const AddressForm = ( { token }) => {
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Shipping Country</InputLabel>
                         <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCountry(e.target.value)}>
+                        {countries.map}
                         <MenuItem key={} value={}>
                             Select Me
                         </MenuItem>
