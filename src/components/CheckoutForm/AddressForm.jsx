@@ -24,8 +24,10 @@ const AddressForm = ( { token }) => {
     //looping over the countries object to create and array of arrays.
     const countries = Object.entries(shippingCountries).map(([code, name]) => ({id : code, label: name}));
 
-
+    //loopinh over the subdivisions to create an array of subdivisions
+    const formattedSubdivsions = Object.entries(shippingSubDivisions).map(([id, name]) => ({id : id, name : name })); 
     
+   
     //fetching the shipping countries via checkoutTokenId. Acts like a recipt.
     const fetchShippingCountries = async (checkoutTokenId) => {
 
@@ -61,6 +63,7 @@ const AddressForm = ( { token }) => {
     useEffect(() => {
         //fetching the subdivisions for the country at hand.
         if(shippingCountry) fetchSubdivisions(shippingCountry);
+       
 
     }, [shippingCountry]);
 
@@ -89,10 +92,12 @@ const AddressForm = ( { token }) => {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Shipping Subdivision</InputLabel>
-                        <Select value={} fullWidth onChange={}>
-                        <MenuItem key={} value={}>
-                            Select Me
+                        <Select value={shippingSubDivision} fullWidth onChange={(e) => setShippingSubDivision(e.target.value)}>
+                        {formattedSubdivsions.map((sub) => (
+                        <MenuItem key={sub.id} value={sub.id}>
+                            {sub.name}
                         </MenuItem>
+                        ))}
                         </Select>
                     </Grid>
                   {/*  <Grid item xs={12} sm={6}>
