@@ -53,6 +53,17 @@ const AddressForm = ( { token }) => {
         
     }
 
+
+    const fetchShippingOptions = async (checkoutTokenId, country, region = null) => {
+
+         const options = commerce.checkout.getShippingOptions(checkoutTokenId, {country, region});
+
+         setShippingOptions(options);
+         //the options is already an array so need to convert from object form.
+         setShippingOption(options[0].id);
+
+    }
+
     useEffect(() => {
         //fetch shipping countries onload and pass generated id.
         fetchShippingCountries(token.id);
@@ -66,6 +77,10 @@ const AddressForm = ( { token }) => {
        
 
     }, [shippingCountry]);
+
+
+    //this useEffect will run whenever the state of the shipping sub division changes
+
 
 
     return (
