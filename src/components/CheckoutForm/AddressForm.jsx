@@ -6,7 +6,7 @@ import FormInput from './FormInput';
 import { Link } from 'react-router-dom';
 
 
-const AddressForm = ( { token }) => {
+const AddressForm = ( { token, next }) => {
     //states for settting the shipping country.
     const [shippingCountries, setShippingCountries] = useState([]);
     const [shippingCountry, setShippingCountry] = useState('');
@@ -94,7 +94,7 @@ const AddressForm = ( { token }) => {
         <>
            <Typography variant="h6" gutterBottom>Shipping Address</Typography>
             <FormProvider {...methods}>
-                <form onSubmit=''>
+                <form onSubmit={methods.handleSubmit((data) => next(data))}>
                 <Grid container spacing={3}>
                     <FormInput  name='firstName' label='First Name' />
                     <FormInput  name='lastName' label='Last Name' />

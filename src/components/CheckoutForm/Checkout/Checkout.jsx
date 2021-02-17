@@ -11,6 +11,9 @@ const Checkout = ({ cart }) => {
     //setting and retrieving the active step.
     const [activeStep, setActiveStep] = useState(0);
 
+    //store shipping data ie the data from the address form
+    const [shippingData, setShippingData] = useState({});
+
     //setting the checkoutToken state.
     const [checkoutToken, setCheckoutToken] = useState(null);
 
@@ -28,10 +31,26 @@ const Checkout = ({ cart }) => {
         generateToken();
     }, [cart]);
 
+
+    const nextStep = () => {
+        setActiveStep((previousActiveStep) => previousActiveStep + 1);
+    }
+
+    const backStep = () => {
+        setActiveStep((backingStep) => backingStep - 1);
+    }
+
+    const next = (data) => {
+        //set shipping data to data retrieved from adress form.
+        setShippingData(data);
+
+        nextStep();
+    }
+
    
 
     const Form  = () => activeStep == 0 
-        ? <AddressForm token={checkoutToken} />
+        ? <AddressForm token={checkoutToken} next={next} />
         : <PaymentForm />
 
     
