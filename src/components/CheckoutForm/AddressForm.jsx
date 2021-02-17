@@ -123,13 +123,13 @@ const AddressForm = ( { token }) => {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Shipping Options</InputLabel>
-                       {/* <Select value={shippingOption} fullWidth onChange={(e) => setShippingOption(e.target.value)}>
+                       <Select value={shippingOption} fullWidth onChange={(e) => setShippingOption(e.target.value)}>
                         {shippingOptions.map((sO) => ({ id: sO.id, label: `${sO.description} - (${sO.price.formatted_with_symbol})` })).map((item) => (
-                  <MenuItem key={item.id} value={item.id}>
-                    {item.label}
-                  </MenuItem>
+                        <MenuItem key={item.id} value={item.id}>
+                            {item.label}
+                        </MenuItem>
                         ))}     
-                        </Select> */ }
+                        </Select>
                     </Grid> 
                 </Grid>
                 </form>
