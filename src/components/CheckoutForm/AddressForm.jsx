@@ -63,8 +63,6 @@ const AddressForm = ( { token }) => {
          //the options is already an array so need to convert from object form.
          setShippingOption(options[0].id);
 
-         console.log("shipping options" + shippingOptions);
-
     }
 
     useEffect(() => {
