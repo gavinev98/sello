@@ -51,7 +51,7 @@ const Checkout = ({ cart }) => {
 
     const Form  = () => activeStep == 0 
         ? <AddressForm token={checkoutToken} next={next} />
-        : <PaymentForm />
+        : <PaymentForm shippingData={shippingData} />
 
     
     //confirmation function.
