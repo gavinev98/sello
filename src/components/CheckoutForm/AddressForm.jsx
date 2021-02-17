@@ -28,9 +28,7 @@ const AddressForm = ( { token }) => {
     const formattedSubdivsions = Object.entries(shippingSubDivisions).map(([id, name]) => ({id : id, name : name })); 
     
 
-    //looping over array of options.
-    const options = shippingOptions.map((sO) => ({id : sO.id, label: `${sO.desription} - (${sO.price.formatted_with_symbol})`}));
-   
+
     //fetching the shipping countries via checkoutTokenId. Acts like a recipt.
     const fetchShippingCountries = async (checkoutTokenId) => {
 
@@ -59,11 +57,13 @@ const AddressForm = ( { token }) => {
 
     const fetchShippingOptions = async (checkoutTokenId, country, region = null) => {
 
-         const options = commerce.checkout.getShippingOptions(checkoutTokenId, {country, region});
-
+         const options = await commerce.checkout.getShippingOptions(checkoutTokenId, {country, region});
+       
          setShippingOptions(options);
          //the options is already an array so need to convert from object form.
          setShippingOption(options[0].id);
+
+         console.log("shipping options" + shippingOptions);
 
     }
 
@@ -85,9 +85,9 @@ const AddressForm = ( { token }) => {
     //this useEffect will run whenever the state of the shipping sub division changes
     useEffect(() => {
         //fetching the subdivisions for the country at hand.
-        if(shippingSubDivision) fetchShippingOptions(token, shippingCountry, shippingSubDivision);
+        if(shippingSubDivision) fetchShippingOptions(token.id, shippingCountry, shippingSubDivision);
        
-
+        
     }, [shippingSubDivision]);
 
 
@@ -125,13 +125,13 @@ const AddressForm = ( { token }) => {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Shipping Options</InputLabel>
-                        <Select value={shippingOption} fullWidth onChange={(e) => setShippingOption(e.target.value)}>
-                        {options.map((uniqueOption) => (
-                        <MenuItem key={uniqueOption.id} value={uniqueOption.id}>
-                            {uniqueOption.label}
-                        </MenuItem>
-                        ))}
-                        </Select>
+                       {/* <Select value={shippingOption} fullWidth onChange={(e) => setShippingOption(e.target.value)}>
+                        {shippingOptions.map((sO) => ({ id: sO.id, label: `${sO.description} - (${sO.price.formatted_with_symbol})` })).map((item) => (
+                  <MenuItem key={item.id} value={item.id}>
+                    {item.label}
+                  </MenuItem>
+                        ))}     
+                        </Select> */ }
                     </Grid> 
                 </Grid>
                 </form>
