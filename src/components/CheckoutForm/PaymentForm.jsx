@@ -3,11 +3,12 @@ import { Typography, Button, Divider } from '@material-ui/core';
 import { Elements, CardElement, ElementsConsumer} from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Review from './Review';
+import { NextWeekSharp } from '@material-ui/icons';
 
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ shippingData, checkoutToken, backStep, handleCaptureCheckout }) => {
+const PaymentForm = ({ shippingData, checkoutToken, backStep, handleCaptureCheckout, nextStep }) => {
 
     const handleSubmit = (event, elements, stripe) => {
         //this is to prevent the website from re loading.
@@ -45,6 +46,9 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep, handleCaptureCheck
             }
             //executing the checkout.
             handleCaptureCheckout(checkoutToken.id, orderData);
+
+            //set the next step so we get confirmation.
+            nextStep();
 
         }
 
