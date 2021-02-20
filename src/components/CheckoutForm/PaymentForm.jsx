@@ -5,10 +5,17 @@ import { loadStripe } from '@stripe/stripe-js';
 import Review from './Review';
 
 
-const stripePromise = loadStripe('..');
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentForm = ({ shippingData, checkoutToken, backStep }) => {
 
+    const handleSubmit = (event, elements, stripe) => {
+        //this is to prevent the website from re loading.
+        event.preventDefault();
+
+
+
+    }
 
 
     return (
@@ -20,7 +27,7 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep }) => {
          <Elements stripe={stripePromise}>
             <ElementsConsumer>
                 {({elements, stripe}) => (
-                    <form>
+                    <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
                        <CardElement />
                        <br /> <br />
                        <div style={{display: 'flex', justifyContent: 'space-between'}}>
