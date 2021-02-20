@@ -7,7 +7,7 @@ import Review from './Review';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ shippingData, checkoutToken, backStep }) => {
+const PaymentForm = ({ shippingData, checkoutToken, backStep, handleCaptureCheckout }) => {
 
     const handleSubmit = (event, elements, stripe) => {
         //this is to prevent the website from re loading.
@@ -43,6 +43,8 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep }) => {
                      }
                  }
             }
+            //executing the checkout.
+            handleCaptureCheckout(checkoutToken.id, orderData);
 
         }
 

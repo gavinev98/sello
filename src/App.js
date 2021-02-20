@@ -12,6 +12,12 @@ const App = () => {
   //creating a state/hook for the shopping cart.
   const [cart, setCart] = useState({});
 
+  // capture the order
+  const [order, setOrder] = useState({});
+
+  //capture the error
+  const [errorMsg, setErrorMsg] = useState('');
+
 
   //fetching products onload of app.
   const fetchProducts = async () => {
@@ -66,6 +72,28 @@ const App = () => {
 
  }
 
+ //refresh the cart once the order has been submitted.
+ const refreshCart = async () => {
+   const newCart = await commerce.cart.refresh();
+
+   setCart(newCart);
+ }
+
+
+ //function to handle checkout. 
+ const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+  //using try catch statement when submitting order,
+      try {
+        const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
+       
+        setOrder(incomingOrder);
+        refreshCart();
+
+      } catch(error) {
+        setErrorMsg(error.data.error.message);
+      }
+ }
+
   //handle remove
 
   //similar to onload function runs at the start.
@@ -92,7 +120,7 @@ const App = () => {
           />
         </Route>
         <Route exact path="/checkout">
-         <Checkout cart={cart} />
+         <Checkout cart={cart} order={order} handleCaptureCheckout={handleCaptureCheckout} error={errorMsg} />
         </Route>
       </Switch>
     </div>
